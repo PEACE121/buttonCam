@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Create shots folder
+mkdir shots
+
 # Compile usbreset
 cc usbreset.c -o usbreset
 chmod +x usbreset
