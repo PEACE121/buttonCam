@@ -21,12 +21,13 @@ currentFolder=$(pwd)
 if ! grep -q trigger.py "/etc/rc.local"; then
 	echo "Creating autostart entry in rc.local"
 	# Delete the exit 0 line
-	sed -i '/pattern to match/d' ./infile
+	sed -i '/exit 0/d' ./etc/rc.local
 	# Configure that the log of the trigger.py script is saved in the file 
 	echo "exec 2> $currentFolder/trigger.log      # send stderr from rc.local to a log file" >> /etc/rc.local
 	echo "exec 1>&2                      # send stdout to the same log file" >> /etc/rc.local
 	echo "set -x                         # tell sh to display commands before execution" >> /etc/rc.local
    	# Execute trigger.py script
+	echo "cd $currentFolder" >> /etc/rc.local
 	echo "sudo python $currentFolder/trigger.py &" >> /etc/rc.local
 	# Restore the exit 0	
 	echo "exit 0" >> /etc/rc.local
