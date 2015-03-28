@@ -1,6 +1,11 @@
 #!/bin/bash
 
-./usbreset /dev/bus/usb/001/014
+# You need to configure these parameters
+# Execute 'lsusb' in the command line and search for the line of the connected camera!
+bus="001"
+device="004"
+
+usbreset /dev/bus/usb/$bus/$device
 gphoto2 --capture-image-and-download --filename shots/shot_%y%m%d%H%M%S.jpg
 processFeh=$(pidof feh)
 echo "instance: $processFeh"
