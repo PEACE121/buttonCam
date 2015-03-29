@@ -12,7 +12,11 @@ fi
 
 autoDetect=$(gphoto2 --auto-detect)
 busDevice=$(echo ${autoDetect} | sed "s/.*${usb} \([^ ]*\).*$/\1/")
+bus=$(sed -r 's/([^0-9]*([0-9]*)){1}.*/\2/' $busDevice)
+device=$(sed -r 's/([^0-9]*([0-9]*)){2}.*/\2/' $busDevice)
 echo $busDevice
+echo $bus
+echo $device
 
 usbreset /dev/bus/usb/$bus/$device
 gphoto2 --capture-image-and-download --filename shots/shot_%y%m%d%H%M%S.jpg
