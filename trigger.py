@@ -28,7 +28,7 @@ try:
     while True:            # this will carry on until you hit CTRL+C
         if GPIO.input(25): # if port 25 == 1
 	    if not pressed:
-		os.system("buttonPressed.sh")
+		os.system("./buttonPressed.sh")
 
 		pressed = True;
             	print "Port 25 is 1/GPIO.HIGH/True - button pressed"
