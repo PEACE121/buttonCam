@@ -5,6 +5,9 @@ if [ "$(id -u)" != "0" ]; then
 	exit 1
 fi
 
+# Install the dependencies
+sudo apt-get install build-essential libgphoto2-2-dev libexif-dev libboost-dev libboost-system-dev libmicrohttpd-dev gphoto2 feh
+
 # Create shots folder
 echo "Creating shots folder"
 mkdir shots
