@@ -34,3 +34,5 @@ if ! grep -q trigger.py "/etc/rc.local"; then
 else
 	echo "An entry for trigger.py was already found in rc.local. If it does not work delete the line in /etc/rc.local and execute this script again!"
 fi
+
+echo "Setup finished. Check the log for errors"

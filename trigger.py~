@@ -18,7 +18,7 @@ timestring = "shots/%04i%02i%02i_%02i%02i%02i" % (jahr,monat,tag,stunde,minute,s
 
 if not os.path.exists("shots"):	
 	os.mkdir("shots")
-os.mkdir(timestring)
+#os.mkdir(timestring)
 os.environ.setdefault('XAUTHORITY', '/home/pi/.Xauthority') 
 os.environ.setdefault('DISPLAY', ':0.0') 
 
