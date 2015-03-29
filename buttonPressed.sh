@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# You need to configure these parameters
-# Execute 'lsusb' in the command line and search for the line of the connected camera!
-bus="001"
-device="004"
-
 if [ "$(id -u)" != "0" ]; then
 	echo "Please execute the script with sudo"
 	exit 1
@@ -12,11 +7,8 @@ fi
 
 autoDetect=$(gphoto2 --auto-detect)
 busDevice=$(echo ${autoDetect} | sed "s/.*${usb} \([^ ]*\).*$/\1/")
-bus=$(sed -r 's/([^0-9]*([0-9]*)){1}.*/\2/' $busDevice)
-device=$(sed -r 's/([^0-9]*([0-9]*)){2}.*/\2/' $busDevice)
-echo $busDevice
-echo $bus
-echo $device
+bus=$(echo ${busDevice} | sed 's/usb\:\(0[0-9]*\),\(0[0-9]*\)/\1/')
+device=$(echo ${busDevice} | sed 's/usb\:\(0[0-9]*\),\(0[0-9]*\)/\2/')
 
 usbreset /dev/bus/usb/$bus/$device
 gphoto2 --capture-image-and-download --filename shots/shot_%y%m%d%H%M%S.jpg
