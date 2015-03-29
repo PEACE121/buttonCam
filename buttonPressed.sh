@@ -11,7 +11,7 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 autoDetect=$(gphoto2 --auto-detect)
-busDevice=$(echo ${autoDetect} | sed "s/.*${usb:} \([^ ]*\).*$/\1/")
+busDevice=$(echo ${autoDetect} | sed "s/.*${usb} \([^ ]*\).*$/\1/")
 echo $busDevice
 
 usbreset /dev/bus/usb/$bus/$device
