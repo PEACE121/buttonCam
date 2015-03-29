@@ -10,6 +10,10 @@ if [ "$(id -u)" != "0" ]; then
 	exit 1
 fi
 
+autoDetect=$(gphoto2 --auto-detect)
+busDevice=$(echo ${autoDetect} | sed "s/.*${usb:} \([^ ]*\).*$/\1/")
+echo $busDevice
+
 usbreset /dev/bus/usb/$bus/$device
 gphoto2 --capture-image-and-download --filename shots/shot_%y%m%d%H%M%S.jpg
 processFeh=$(pidof feh)
